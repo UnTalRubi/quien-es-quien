@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "README",
-        "REFLEX"
+        "REFLEX",
+        "PERSONAJES"
     ]
 }
