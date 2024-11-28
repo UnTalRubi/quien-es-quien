@@ -67,6 +67,9 @@ El programa consiste en el clásico juego de mesa de **¿Quién es quién?** par
 |  El jugador  |  Elegir una carta volteada / Tener asignada una carta aleatoria  |  Para comenzar a jugar la partida adivinando su personaje  |
 |  El jugador  |  Introducir características en una caja de texto  |  Para filtrar los personajes del tablero que no son el suyo  |
 |  "PH"  |  "PH"  |  "PH"  |
+|  El jugador  |  Elegir el último personaje en pie  |  Para ganar la partida  |
+|  El jugador  |  Elegir si quiere volver a jugar  |  Para comenzar una nueva partida  |
+
 
 
 ## Estructura de proyecto 📂
