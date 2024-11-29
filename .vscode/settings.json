@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "README",
         "REFLEX",
-        "PERSONAJES"
+        "PERSONAJES",
+        "RANDOM PERSONAJE"
     ]
 }
