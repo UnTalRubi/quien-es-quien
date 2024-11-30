@@ -1,39 +1,39 @@
-"""Welcome to Reflex! This file outlines the steps to create a basic app."""
-
 import reflex as rx
 
 from rxconfig import config
 
 
-class State(rx.State):
-    """The app state."""
+def cabecera() -> rx.Component:
+    return rx.heading(
+        rx.container(
+            rx.heading("¿Quién es Quién?", as_="h1", size="8"),
+        )
+)
 
-    ...
 
-
-def index() -> rx.Component:
-    # Welcome Page (Index)
-    return rx.container(
-        rx.color_mode.button(position="top-right"),
-        rx.vstack(
-            rx.heading("Welcome to Reflex!", size="9"),
-            rx.text(
-                "Get started by editing ",
-                rx.code(f"{config.app_name}/{config.app_name}.py"),
-                size="5",
+def tablero() -> rx.Component:
+    #Tablero personajes
+    return rx.box(
+        rx.grid(
+            rx.foreach(
+                rx.Var.range(24),
+                lambda i: rx.card(f"Personaje {i + 1}", height="13em", width="7.5em"),
             ),
-            rx.link(
-                rx.button("Check out our docs!"),
-                href="https://reflex.dev/docs/getting-started/introduction/",
-                is_external=True,
-            ),
-            spacing="5",
-            justify="center",
-            min_height="85vh",
-        ),
-        rx.logo(),
+                columns="8",
+                rows="3",
+                spacing="3",
+        )
     )
 
+def index() -> rx.Component:
+    #Página inicial
+    return rx.box(
+        rx.vstack(
+            cabecera(),
+            tablero(),
+            align="center",
+        )
+    )
 
 app = rx.App()
 app.add_page(index)
