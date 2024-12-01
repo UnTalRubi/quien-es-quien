@@ -1,5 +1,6 @@
 import reflex as rx
 from quien_es_quien.state import State
+from quien_es_quien.nombre_personaje import nombre_pj
 
 def cabecera() -> rx.Component:
     return rx.heading(
@@ -15,6 +16,13 @@ def tablero() -> rx.Component:
         rx.foreach(
             rx.Var.range(24),
             lambda i: rx.card(
+                rx.inset(
+                    rx.image(
+                        src=f"{i + 1}.jpg",
+                        width="100%",
+                        height="auto",
+                    ),
+                ),
                 f"Personaje {i + 1}",
                 height="13em", 
                 width="7.5em"
@@ -22,7 +30,7 @@ def tablero() -> rx.Component:
         ),
         columns="8",
         rows="3",
-        spacing="3"
+        spacing="3",
     )
 
 

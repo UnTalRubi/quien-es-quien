@@ -11,7 +11,7 @@ from quien_es_quien.personaje_random import random_pj
 def test_personaje_random(expected):
     
     random_list=[]
-    for _ in range(100):
+    for _ in range(300):
         random_list.append(random_pj())
     
     random_list.sort()
