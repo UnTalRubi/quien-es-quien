@@ -1,9 +1,12 @@
 import reflex as rx
-from rxconfig import config
-
+from quien_es_quien.state import State
 
 def cabecera() -> rx.Component:
-    return rx.heading("¿Quién es Quién?", as_="h1", size="8", margin="1em")
+    return rx.heading(
+        "¿Quién es Quién?", 
+        as_="h1", size="8", 
+        margin="1em"
+    )
 
 
 def tablero() -> rx.Component:
@@ -11,17 +14,33 @@ def tablero() -> rx.Component:
     return rx.grid(
         rx.foreach(
             rx.Var.range(24),
-            lambda i: rx.card(f"Personaje {i + 1}", height="13em", width="7.5em"),
+            lambda i: rx.card(
+                f"Personaje {i + 1}",
+                height="13em", 
+                width="7.5em"
+            ),
         ),
-            columns="8",
-            rows="3",
-            spacing="3",
+        columns="8",
+        rows="3",
+        spacing="3"
     )
 
 
 def jugador() -> rx.Component:
     #Carta jugador
-    return rx.card("Jugador", height="17em", width="10em", margin_left="5em")
+    return rx.card(
+        rx.inset(
+            rx.image(
+                src="/" + State.personaje_jugador + ".jpg",
+                width="100%",
+                height="auto",
+            ),
+        ),
+        State.personaje_jugador,
+        height="17em", 
+        width="10em", 
+        margin_left="5em"
+    )
 
 
 def index() -> rx.Component:
