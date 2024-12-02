@@ -14,27 +14,31 @@ def extraer_palabras_clave(pregunta):
             respuesta.append(palabra_clave)
             if palabra_clave in forma_nariz: 
                 respuesta.append(palabra_clave) 
+                print(respuesta)
                 return respuesta
-        if palabra_clave in caracteristicas:
+        elif palabra_clave in caracteristicas:
                 respuesta.append(palabra_clave) 
+                return respuesta
     if not respuesta: 
         return f"No se encontró la característica. Intenta con las siguientes características posibles: {', '.join(caracteristicas)}" 
     return respuesta
 
 
+
+
 pregunta = "¿Tiene los ojos azules?"
 print(extraer_palabras_clave(pregunta))
-pregunta = "¿Tiene la cara triste?"
-print(extraer_palabras_clave(pregunta))
-pregunta = "¿Está triste?"
-print(extraer_palabras_clave(pregunta)) ####
-pregunta = "Tiene los ojos verdes?"
-print(extraer_palabras_clave(pregunta))
-pregunta = "Tiene hoyuelos?"
-print(extraer_palabras_clave(pregunta))
-pregunta = "Tiene cara?"
-print(extraer_palabras_clave(pregunta)) ####
-pregunta = "Tiene labios finos?"
-print(extraer_palabras_clave(pregunta))
-pregunta = "Tiene la boca grande?"
-print(extraer_palabras_clave(pregunta))
+# pregunta = "¿Tiene la cara triste?"
+# print(extraer_palabras_clave(pregunta))
+# pregunta = "¿Está triste?"
+# print(extraer_palabras_clave(pregunta)) ####
+# pregunta = "Tiene los ojos verdes?"
+# print(extraer_palabras_clave(pregunta))
+# pregunta = "Tiene hoyuelos?"
+# print(extraer_palabras_clave(pregunta))
+# pregunta = "Tiene cara?"
+# print(extraer_palabras_clave(pregunta)) ####
+# pregunta = "Tiene labios finos?"
+# print(extraer_palabras_clave(pregunta))
+# pregunta = "Tiene la boca grande?"
+# print(extraer_palabras_clave(pregunta))
