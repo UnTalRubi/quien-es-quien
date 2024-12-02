@@ -23,7 +23,7 @@ def tablero() -> rx.Component:
                         height="auto",
                     ),
                 ),
-                f"Personaje {i + 1}",
+                #f"Personaje {i + 1}",
                 height="13em", 
                 width="7.5em"
             ),
@@ -44,7 +44,7 @@ def jugador() -> rx.Component:
                 height="auto",
             ),
         ),
-        State.personaje_jugador,
+        #State.personaje_jugador,
         height="17em", 
         width="10em", 
         margin_left="5em"
