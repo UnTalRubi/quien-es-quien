@@ -1,6 +1,6 @@
 import reflex as rx
 from quien_es_quien.state import State
-from quien_es_quien.nombre_personaje import nombre_pj
+
 
 def cabecera() -> rx.Component:
     return rx.heading(
@@ -18,12 +18,12 @@ def tablero() -> rx.Component:
             lambda i: rx.card(
                 rx.inset(
                     rx.image(
-                        src=f"{i + 1}.jpg",
+                        src= f"{State.obtener_personajes}",
                         width="100%",
                         height="auto",
                     ),
                 ),
-                #f"Personaje {i + 1}",
+                State.imagen_personaje,
                 height="13em", 
                 width="7.5em"
             ),
@@ -39,15 +39,21 @@ def jugador() -> rx.Component:
     return rx.card(
         rx.inset(
             rx.image(
-                src="/" + State.personaje_jugador + ".jpg",
+                src=State.personaje_jugador + ".jpg",
                 width="100%",
                 height="auto",
             ),
         ),
-        #State.personaje_jugador,
         height="17em", 
         width="10em", 
         margin_left="5em"
+    )
+
+
+def boton_panico() -> rx.Component:
+    return rx.button(
+        "Test",
+        on_click = State.obtener_jugador,
     )
 
 
@@ -60,6 +66,8 @@ def index() -> rx.Component:
             jugador(),
             align="center",
         ), 
+        rx.heading(State.personaje_jugador, font_size="2em"),
+        boton_panico(),
         align="center"
     )
 
