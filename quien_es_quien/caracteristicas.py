@@ -10,15 +10,16 @@ def extraer_palabras_clave(pregunta):
         pregunta = pregunta.replace(caracter, "") 
     respuesta = []
     pregunta=pregunta.split()
-    for palabra_clave in pregunta: 
-        if palabra_clave in lista:
-            respuesta.append(palabra_clave)
-            if valor in atributo: 
-                respuesta.append(palabra_clave) 
-                print(respuesta)
+    posicion=0
+    for posicion in range(len(pregunta)): 
+        if pregunta[posicion] in lista:
+            respuesta.append(pregunta[posicion])
+            if pregunta[posicion + 1] in atributo: 
+                respuesta.append(pregunta[posicion + 1]) 
+                # print(respuesta)
                 return respuesta
-        elif palabra_clave in caracteristicas:
-                respuesta.append(palabra_clave) 
+        elif pregunta[posicion] in caracteristicas:
+                respuesta.append(pregunta[posicion]) 
                 return respuesta
     if not respuesta: 
         return f"No se encontró la característica. Intenta con las siguientes características posibles: {', '.join(caracteristicas)}" 
@@ -26,9 +27,8 @@ def extraer_palabras_clave(pregunta):
 
 
 
-
 pregunta = "¿Tiene los ojos azules?"
-print(extraer_palabras_clave(pregunta)) ##
+print(extraer_palabras_clave(pregunta)) 
 pregunta = "¿Tiene la cara triste?"
 print(extraer_palabras_clave(pregunta))
 pregunta = "¿Está triste?"
@@ -36,7 +36,7 @@ print(extraer_palabras_clave(pregunta))
 pregunta = "Tiene los ojos verdes?"
 print(extraer_palabras_clave(pregunta))
 pregunta = "Tiene hoyuelos?"
-print(extraer_palabras_clave(pregunta)) ####
+print(extraer_palabras_clave(pregunta))
 pregunta = "Tiene labios finos?"
 print(extraer_palabras_clave(pregunta))
 pregunta = "Tiene la boca grande?"
