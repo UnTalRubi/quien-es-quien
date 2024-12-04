@@ -1,7 +1,7 @@
 import reflex as rx
 from quien_es_quien.state import State
 from quien_es_quien.lista_personajes import personajes
-from quien_es_quien.lista_nombres import nombres
+from quien_es_quien.lista_nombres import nombres_personajes
 
 def cabecera() -> rx.Component:
     return rx.heading(
@@ -15,7 +15,7 @@ def tablero() -> rx.Component:
     #Tablero personajes
     return rx.grid(
         rx.foreach(
-            nombres,
+            nombres_personajes,
             lambda nombre:
             carta(nombre),
         ),

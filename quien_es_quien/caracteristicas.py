@@ -1,7 +1,7 @@
 def extraer_palabras_clave(pregunta): 
     caracteristicas = ['hombre', 'mujer', 'barba', 'pelirrojo', 'marrones', 'orejas', 'grandes', 'mofletes', 'mejillas', 'sonrosadas', 'calva', 'pelirroja',
-                      'bigote', 'azules', 'largo', 'raya', 'medio', 'pelo', 'negro', 'gruesos', 'corto', 'gafas', 'alargada', 'blanco', 'canas', 
-                      'cejas', 'gruesas', 'lado', 'sombrero', 'pendientes', 'castaño', 'finas', 'rubio', 'triste', 'gorra', 'finos','calvo','marrón', 'rubia'] 
+                        'bigote', 'azules', 'largo', 'raya', 'medio', 'pelo', 'negro', 'gruesos', 'corto', 'gafas', 'alargada', 'blanco', 'canas', 
+                        'cejas', 'gruesas', 'lado', 'sombrero', 'pendientes', 'castaño', 'finas', 'rubio', 'triste', 'gorra', 'finos','calvo','marrón', 'rubia'] 
     atributo=['grande', 'pequeña']
     lista=['boca','nariz']
     pregunta = pregunta.lower() 
