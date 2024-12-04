@@ -51,6 +51,16 @@ def jugador() -> rx.Component:
     )
 
 
+def action_bar() -> rx.Component:
+    return rx.hstack(
+        rx.input(
+            placeholder="Introduce una característica",
+            type="text"
+        ),
+        rx.button("Preguntar", type="submit"),
+    )
+
+
 def index() -> rx.Component:
     #Página inicial
     return rx.vstack(
@@ -59,7 +69,8 @@ def index() -> rx.Component:
             tablero(),
             jugador(),
             align="center",
-        ), 
+        ),
+        action_bar(), 
         align="center"
     )
 
