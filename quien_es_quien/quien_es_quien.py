@@ -55,6 +55,16 @@ def jugador() -> rx.Component:
     )
 
 
+def action_bar() -> rx.Component:
+    return rx.hstack(
+        rx.input(
+            placeholder="Introduce una característica",
+            type="text"
+        ),
+        rx.button("Preguntar", type="submit"),
+    )
+
+
 def boton_panico() -> rx.Component:
     return rx.button(
         "Test",
@@ -70,9 +80,10 @@ def index() -> rx.Component:
             tablero(),
             jugador(),
             align="center",
-        ), 
+        ),
         rx.heading(State.personaje_jugador, font_size="2em"),
         boton_panico(),
+        action_bar(), 
         align="center"
     )
 
