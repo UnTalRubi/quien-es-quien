@@ -2,6 +2,14 @@
     "conventionalCommits.scopes": [
         "README",
         "REFLEX",
+<<<<<<< HEAD
         "CARACTERISTICAS"
+=======
+        "PERSONAJES",
+        "RANDOM PERSONAJE",
+        "IMAGENES",
+        "PAGINA PRINCIPAL",
+        "CARACTERÍSTICAS"
+>>>>>>> b3892a057da72bfeeb1304ab3ba128c18448e5df
     ]
 }
