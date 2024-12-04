@@ -1,0 +1,1 @@
+nombres=["Susan","Claire","David","Anne","Robert","Anita","Joe","George","Bill","Alfred","Max","Tom","Alex","Sam","Richard","Paul","Maria","Frans","Herman","Bernard","Philip","Eric","Charles","Peter"]

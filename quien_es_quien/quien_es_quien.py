@@ -1,6 +1,7 @@
 import reflex as rx
 from quien_es_quien.state import State
-
+from quien_es_quien.lista_personajes import personajes
+from quien_es_quien.lista_nombres import nombres
 
 def cabecera() -> rx.Component:
     return rx.heading(
@@ -14,19 +15,9 @@ def tablero() -> rx.Component:
     #Tablero personajes
     return rx.grid(
         rx.foreach(
-            rx.Var.range(24),
-            lambda i: rx.card(
-                rx.inset(
-                    rx.image(
-                        src= f"{State.obtener_personajes}",
-                        width="100%",
-                        height="auto",
-                    ),
-                ),
-                State.imagen_personaje,
-                height="13em", 
-                width="7.5em"
-            ),
+            nombres,
+            lambda nombre:
+            carta(nombre),
         ),
         columns="8",
         rows="3",
@@ -34,12 +25,16 @@ def tablero() -> rx.Component:
     )
 
 
+def carta(nombre) -> rx.Component:
+    return rx.card(rx.inset(rx.image(src=nombre + ".jpg", width="100%", height="auto")), height="13em", width="7.5em")
+
+
 def jugador() -> rx.Component:
     #Carta jugador
     return rx.card(
         rx.inset(
             rx.image(
-                src=State.personaje_jugador + ".jpg",
+                src= State.personaje_jugador + ".jpg",
                 width="100%",
                 height="auto",
             ),

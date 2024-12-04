@@ -6,14 +6,14 @@ class State(rx.State):
 
     personaje_jugador="Personaje"
     posicion=0
-    imagen_personaje = "Alex.jpg"
+    personaje_tablero = "Alex"
 
     @rx.event
     def obtener_jugador(self):
         self.personaje_jugador = random_pj(personajes)
 
     @rx.event
-    def obtener_personajes(self, posicion):
-        self.imagen_personaje = personajes[posicion][0] + ".jpg"
+    def obtener_personaje(self, posicion):
+        self.personaje_tablero = personajes[posicion][0] + ".jpg"
         posicion += 1
-        return str(self.imagen_personaje)
+        return self.personaje_tablero
