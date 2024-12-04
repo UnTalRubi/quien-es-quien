@@ -26,7 +26,17 @@ def tablero() -> rx.Component:
 
 
 def carta(nombre) -> rx.Component:
-    return rx.card(rx.inset(rx.image(src=nombre + ".jpg", width="100%", height="auto")), height="13em", width="7.5em")
+    return rx.card(
+        rx.inset(
+            rx.image(
+                src=nombre + ".jpg", 
+                width="100%", 
+                height="auto"
+            )
+        ), 
+        height="13em", 
+        width="7.5em"
+    )
 
 
 def jugador() -> rx.Component:
