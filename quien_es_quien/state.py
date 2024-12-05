@@ -26,8 +26,4 @@ class State(rx.State):
     def obtener_caracteristicas(self):
         self.extraer = extraer_palabras_clave(self.pregunta)
         self.obtener = devolver_nombre(self.respuesta)
-
-
-    @rx.event
-    def tumbar_personajes(self):
         self.personajes_tumbados.append(self.obtener)

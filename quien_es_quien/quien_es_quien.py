@@ -82,7 +82,7 @@ def action_bar() -> rx.Component:
             placeholder="Introduce una característica",
             type="text"
         ),
-        rx.button("Preguntar", type="submit"),
+        rx.button("Preguntar", type="submit", on_click=State.obtener_caracteristicas),
     )
 
 def quitar_personajes() -> rx.Component:
@@ -97,7 +97,7 @@ def boton_panico() -> rx.Component:
     return rx.button(
         "Test",
         on_click = State.obtener_jugador,
-        on_double_click= State.tumbar_personajes
+        on_double_click= State.obtener_caracteristicas
     )
 
 
