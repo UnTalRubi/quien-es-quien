@@ -1,6 +1,5 @@
 import reflex as rx
 from quien_es_quien.state import State
-from quien_es_quien.lista_personajes import personajes
 from quien_es_quien.lista_nombres import nombres_personajes
 
 def cabecera() -> rx.Component:
@@ -45,9 +44,10 @@ def carta(nombre) -> rx.Component:
                 )
             )
         ),
-        height="13em", 
+        height="12em", 
         width="7.5em"
     )
+
 
 def jugador() -> rx.Component:
     #Carta jugador
@@ -76,28 +76,22 @@ def jugador() -> rx.Component:
     )
 
 
-def action_bar() -> rx.Component:
+def input_texto() -> rx.Component:
     return rx.hstack(
         rx.input(
             placeholder="Introduce una característica",
+            value=State.pregunta,
+            on_change=State.set_pregunta,
             type="text"
         ),
         rx.button("Preguntar", type="submit", on_click=State.obtener_caracteristicas),
-    )
-
-def quitar_personajes() -> rx.Component:
-    return rx.input(
-        placeholder="Introduce nombres",
-        type="text",
-        on_blur=State.tumbar_personajes
     )
 
 
 def boton_panico() -> rx.Component:
     return rx.button(
         "Test",
-        on_click = State.obtener_jugador,
-        on_double_click= State.obtener_caracteristicas
+        on_click = State.reiniciar_partida
     )
 
 
@@ -112,7 +106,7 @@ def index() -> rx.Component:
         ),
         rx.heading(State.personaje_jugador, font_size="2em"),
         boton_panico(),
-        action_bar(), 
+        input_texto(), 
         align="center"
     )
 
