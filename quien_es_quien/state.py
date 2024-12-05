@@ -7,6 +7,12 @@ from quien_es_quien.devolver_nombres import devolver_nombre
 class State(rx.State):
 
     personaje_jugador="Jugador"
+
+    mostrar_jugador=False
+
+    personaje_muerto="Alex"
+
+    personajes_tumbados=[]
     pregunta=""
     respuesta=""
     extraer=[]
@@ -15,8 +21,13 @@ class State(rx.State):
     @rx.event
     def obtener_jugador(self):
         self.personaje_jugador = random_pj(personajes)
-    
+
     @rx.event
     def obtener_caracteristicas(self):
         self.extraer = extraer_palabras_clave(self.pregunta)
         self.obtener = devolver_nombre(self.respuesta)
+
+
+    @rx.event
+    def tumbar_personajes(self):
+        self.personajes_tumbados.append(self.obtener)
