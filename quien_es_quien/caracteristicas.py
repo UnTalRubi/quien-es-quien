@@ -1,5 +1,5 @@
 def extraer_palabras_clave(pregunta): 
-    caracteristicas = ["hombre","mujer","largo","corto","blanco","blanca","canoso","canosa","canas","pelirrojo","pelirroja","rojo","roja","rubio","rubia","amarillo","amarilla",
+    caracteristicas = ["hombre","mujer","largo","corto","blanco","blanca","gris","grisaceo","canoso","canosa","canas","pelirrojo","pelirroja","rojo","roja","rubio","rubia","amarillo","amarilla",
                         "negro","negra","oscuro","oscura","castaño","castaña","calvo","calva","finas","gruesas","alargada","redonda","redondeada","alegre","contento","contenta","triste",
                         "enfadado","enfadada","marrones","azules","azulados","mejillas","sonrosadas","sombrero","gorro","gorra","pendientes","pendiente", "gafas","lentes","bigote","barba"] 
     

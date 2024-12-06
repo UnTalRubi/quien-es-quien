@@ -1,15 +1,15 @@
 import pytest
-from quien_es_quien.devolver_nombres import devolver_nombre
+from quien_es_quien.devolver_nombres import comprobar_respuesta
 
 @pytest.mark.parametrize(
-        "input, expected",
+        "input1, input2, expected",
         [
-            ("boca grande", ["Susan","David","Robert","George","Max","Alex","Philip","Eric","Charles","Peter"]),
-            ("mujer", ["Susan","Claire","Anne","Anita","Maria"]),
-            ("",[])
+            ("mujer", "Tom", ["Susan","Claire","Anne","Anita","Maria"]),
+            ("boca grande", "Philip", ["Claire","Anne","Anita","Joe","Bill","Alfred","Tom","Sam","Richard","Paul","Maria","Frans","Herman","Bernard"]),
+            ("","Anne",[])
         ]
 )
 
-def test_caracteristicas(input,expected):
+def test_caracteristicas(input1,input2,expected):
     
-    assert devolver_nombre(input) == expected
+    assert comprobar_respuesta(input1, input2) == expected
