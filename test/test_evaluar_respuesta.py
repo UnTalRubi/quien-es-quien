@@ -1,5 +1,5 @@
 import pytest
-from quien_es_quien.evaluar_respuesta import correccion
+from quien_es_quien.logica.evaluar_respuesta import correccion
 
 @pytest.mark.parametrize(
         "input1, input2, expected",

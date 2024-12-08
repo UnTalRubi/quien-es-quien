@@ -1,13 +1,13 @@
 import reflex as rx
 from quien_es_quien.state import State
-from quien_es_quien.lista_nombres import nombres_personajes
+from quien_es_quien.variables.lista_nombres import nombres_personajes
 from quien_es_quien import style
 
 def cabecera() -> rx.Component:
     #Título del juego
     return rx.heading(
-        "¿Quién es Quién?", 
-        as_= "h1", size= "8", 
+        "¿Quién es Quién?",
+        as_= "h1", size= "8",
         margin= "1em"
     )
 
@@ -22,7 +22,7 @@ def tablero() -> rx.Component:
         ),
         columns= "8",
         rows= "3",
-        spacing= "3",
+        spacing= "3"
     )
 
 
@@ -33,7 +33,7 @@ def carta(nombre) -> rx.Component:
             rx.cond(
                 State.personajes_tumbados.contains(nombre),
                 rx.image(
-                    src= "ocultar.jpg", 
+                    src= "ocultar.png", 
                     style= style.imagen_carta
                 )
             ),
@@ -61,7 +61,7 @@ def jugador() -> rx.Component:
             rx.cond(
                 ~State.mostrar_jugador,
                 rx.image(
-                    src= "ocultar.jpg",
+                    src= "ocultar.png",
                     style= style.imagen_carta
                 ),
             )
@@ -93,7 +93,6 @@ def input_texto() -> rx.Component:
             style=style.boton,
             _hover=style.boton_hover
         ),
-        
     )
 
 
@@ -102,8 +101,9 @@ def boton_reiniciar() -> rx.Component:
     return rx.hstack(
         rx.button(
             "Reiniciar partida",
+            on_click= State.reiniciar_partida,
             style= style.boton_reset,
-            on_click= State.reiniciar_partida
+            _hover=style.boton_hover
         )
     )
 
@@ -128,5 +128,9 @@ def index() -> rx.Component:
     )
 
 
-app = rx.App()
+app = rx.App(
+    theme= rx.theme(
+        rx.theme_panel(default_open=False)
+    )
+)
 app.add_page(index)

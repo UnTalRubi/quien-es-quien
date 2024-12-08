@@ -1,5 +1,5 @@
-from quien_es_quien.lista_personajes import personajes
-from quien_es_quien.lista_nombres import nombres_personajes
+from quien_es_quien.variables.lista_personajes import personajes
+from quien_es_quien.variables.lista_nombres import nombres_personajes
 
 
 def comprobar_respuesta(respuesta,jugador):

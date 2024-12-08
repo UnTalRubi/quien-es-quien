@@ -1,8 +1,8 @@
 import reflex as rx
-from quien_es_quien.personaje_random import random_pj
-from quien_es_quien.caracteristicas import extraer_palabras_clave
-from quien_es_quien.devolver_nombres import comprobar_respuesta
-from quien_es_quien.evaluar_respuesta import correccion
+from quien_es_quien.logica.personaje_random import random_pj
+from quien_es_quien.logica.caracteristicas import extraer_palabras_clave
+from quien_es_quien.logica.devolver_nombres import comprobar_respuesta
+from quien_es_quien.logica.evaluar_respuesta import correccion
 
 class State(rx.State):
 
