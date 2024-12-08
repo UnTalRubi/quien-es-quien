@@ -12,7 +12,8 @@ class State(rx.State):
     personajes_tumbados: list = []
     
     pregunta: str = ""
-    extraer: str = ""
+    palabras_clave: str = ""
+    es_correcto: str = ""
 
 
     @rx.event
@@ -22,10 +23,22 @@ class State(rx.State):
 
     @rx.event
     def obtener_caracteristicas(self):
-        self.extraer = extraer_palabras_clave(self.pregunta)
-        self.personajes_incorrectos = comprobar_respuesta(self.extraer,self.personaje_jugador)
+        self.palabras_clave = extraer_palabras_clave(self.pregunta)
+        self.personajes_incorrectos, self.es_correcto= comprobar_respuesta(self.palabras_clave,self.personaje_jugador)
         self.personajes_tumbados.extend(self.personajes_incorrectos)
         self.pregunta = ""
+        self.palabras_clave = ""
+
+
+    @rx.event
+    def comprobacion(self):
+        if self.es_correcto == "invalido":
+            return rx.toast.warning("Prueba otra cosa!")
+        if self.es_correcto == "correcto":
+            return rx.toast.success("Tiene la característica!")
+        if self.es_correcto == "incorrecto":
+            return rx.toast.error("No tiene la característica!")
+
 
 
     @rx.event

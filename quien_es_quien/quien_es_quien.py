@@ -85,18 +85,32 @@ def input_texto() -> rx.Component:
                 on_change= State.set_pregunta,
                 type= "text"
             ),
-            on_submit=State.obtener_caracteristicas,
+            on_submit=[State.obtener_caracteristicas, State.comprobacion],
             reset_on_submit=True,
         ),
-        rx.button("Preguntar", type= "submit", on_click= State.obtener_caracteristicas),
+        rx.button(
+            "Preguntar", 
+            type= "submit", 
+            on_click= State.obtener_caracteristicas,
+            variant= "surface", 
+            color_scheme= "orange",
+        ),
+        
     )
 
 
 def boton_reiniciar() -> rx.Component:
-    return rx.button(
-        "Reiniciar partida",
-        on_click= State.reiniciar_partida
+    return rx.hstack(
+        rx.button(
+            "Reiniciar partida",
+            on_click= State.reiniciar_partida,
+            variant= "surface", 
+            color_scheme= "orange", 
+            size= "3", 
+            margin_left="72em"
+        )
     )
+
 
 @rx.page(on_load= State.obtener_jugador)
 def index() -> rx.Component:
@@ -108,7 +122,10 @@ def index() -> rx.Component:
             jugador(),
             align="center",
         ),
-        rx.heading("Tu personaje es " + State.personaje_jugador, font_size= "2em"),
+        rx.heading(
+            "Tu personaje es " + State.personaje_jugador,
+            font_size= "2em"
+        ),
         boton_reiniciar(),
         input_texto(), 
         align="center"
