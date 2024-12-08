@@ -3,6 +3,7 @@ from quien_es_quien.state import State
 from quien_es_quien.lista_nombres import nombres_personajes
 
 def cabecera() -> rx.Component:
+    #Título del juego
     return rx.heading(
         "¿Quién es Quién?", 
         as_= "h1", size= "8", 
@@ -25,6 +26,7 @@ def tablero() -> rx.Component:
 
 
 def carta(nombre) -> rx.Component:
+    #Carta personajes
     return rx.card(
         rx.inset(
             rx.cond(
@@ -77,6 +79,7 @@ def jugador() -> rx.Component:
 
 
 def input_texto() -> rx.Component:
+    #Caja de entrada de texto
     return rx.hstack(
         rx.form(
             rx.input(
@@ -91,7 +94,7 @@ def input_texto() -> rx.Component:
         rx.button(
             "Preguntar", 
             type= "submit", 
-            on_click= State.obtener_caracteristicas,
+            on_click= [State.obtener_caracteristicas, State.comprobacion],
             variant= "surface", 
             color_scheme= "orange",
         ),
@@ -100,6 +103,7 @@ def input_texto() -> rx.Component:
 
 
 def boton_reiniciar() -> rx.Component:
+    #Botón nueva partida
     return rx.hstack(
         rx.button(
             "Reiniciar partida",
@@ -114,7 +118,7 @@ def boton_reiniciar() -> rx.Component:
 
 @rx.page(on_load= State.obtener_jugador)
 def index() -> rx.Component:
-    #Página inicial
+    #Página principal
     return rx.vstack(
         cabecera(),
         rx.hstack(
@@ -127,7 +131,7 @@ def index() -> rx.Component:
             font_size= "2em"
         ),
         boton_reiniciar(),
-        input_texto(), 
+        input_texto(),
         align="center"
     )
 
