@@ -1,6 +1,7 @@
 import reflex as rx
 from quien_es_quien.state import State
 from quien_es_quien.lista_nombres import nombres_personajes
+from quien_es_quien import style
 
 def cabecera() -> rx.Component:
     #Título del juego
@@ -33,21 +34,17 @@ def carta(nombre) -> rx.Component:
                 State.personajes_tumbados.contains(nombre),
                 rx.image(
                     src= "ocultar.jpg", 
-                    width= "100%", 
-                    height= "auto"
+                    style= style.imagen_carta
                 )
             ),
             rx.cond(
                 ~State.personajes_tumbados.contains(nombre),
                 rx.image(
                     src=nombre + ".jpg", 
-                    width= "100%", 
-                    height= "auto"
+                    style= style.imagen_carta
                 )
             )
-        ),
-        height= "12em", 
-        width= "7.5em"
+        ),style= style.carta_personaje
     )
 
 
@@ -59,22 +56,18 @@ def jugador() -> rx.Component:
                 State.mostrar_jugador,
                 rx.image(
                     src= State.personaje_jugador + ".jpg",
-                    width= "100%",
-                    height= "auto",
+                    style= style.imagen_carta
                 ),
             rx.cond(
                 ~State.mostrar_jugador,
                 rx.image(
                     src= "ocultar.jpg",
-                    width= "100%",
-                    height= "auto",
+                    style= style.imagen_carta
                 ),
             )
             )
         ),
-        height= "17em", 
-        width= "10em", 
-        margin_left="5em"
+        style=style.carta_jugador
     )
 
 
@@ -86,17 +79,19 @@ def input_texto() -> rx.Component:
                 placeholder= "Introduce una característica",
                 value= State.pregunta,
                 on_change= State.set_pregunta,
-                type= "text"
+                type= "text",
+                width="100%"
             ),
             on_submit=[State.obtener_caracteristicas, State.comprobacion],
             reset_on_submit=True,
+            width="20em"
         ),
         rx.button(
-            "Preguntar", 
-            type= "submit", 
+            "Preguntar",
+            type= "submit",
             on_click= [State.obtener_caracteristicas, State.comprobacion],
-            variant= "surface", 
-            color_scheme= "orange",
+            style=style.boton,
+            _hover=style.boton_hover
         ),
         
     )
@@ -107,11 +102,8 @@ def boton_reiniciar() -> rx.Component:
     return rx.hstack(
         rx.button(
             "Reiniciar partida",
-            on_click= State.reiniciar_partida,
-            variant= "surface", 
-            color_scheme= "orange", 
-            size= "3", 
-            margin_left="72em"
+            style= style.boton_reset,
+            on_click= State.reiniciar_partida
         )
     )
 
@@ -128,7 +120,7 @@ def index() -> rx.Component:
         ),
         rx.heading(
             "Tu personaje es " + State.personaje_jugador,
-            font_size= "2em"
+            style= style.cabecera
         ),
         boton_reiniciar(),
         input_texto(),

@@ -26,6 +26,7 @@ class State(rx.State):
 
     def comprobacion(self):
         if self.cantidad_tumbados >= 23:
+            self.mostrar_jugador= True
             return rx.toast.success(
                 "Has ganado!", 
                 description="El personaje correcto era " + self.personaje_jugador + ".", 
@@ -33,8 +34,8 @@ class State(rx.State):
                 style={
                     "border": "3px solid green",
                     "border-radius": "0.53m",
-                })
-
+                }
+            )
         elif self.es_correcto == "invalido":
             return rx.toast.warning("Prueba otra cosa!")
         elif self.es_correcto == "correcto":
@@ -49,7 +50,6 @@ class State(rx.State):
 
         self.personajes_incorrectos= comprobar_respuesta(self.palabras_clave,self.personaje_jugador)
         self.es_correcto = correccion(self.palabras_clave,self.personaje_jugador)
-        self.comprobacion()
         self.personajes_tumbados.extend(self.personajes_incorrectos)
         self.personajes_tumbados= list(set(self.personajes_tumbados))
         self.cantidad_tumbados= len(self.personajes_tumbados)
@@ -60,6 +60,7 @@ class State(rx.State):
     @rx.event
     def reiniciar_partida(self):
         self.mostrar_resultado = False
+        self.mostrar_jugador = False
         self.pregunta = ""
         self.personajes_tumbados = []
         self.obtener_jugador()
