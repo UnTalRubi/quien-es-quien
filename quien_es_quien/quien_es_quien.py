@@ -1,6 +1,7 @@
 import reflex as rx
 from quien_es_quien.state import State
-from quien_es_quien.nombre_personaje import nombre_pj
+from quien_es_quien.lista_personajes import personajes
+from quien_es_quien.lista_nombres import nombres_personajes
 
 def cabecera() -> rx.Component:
     return rx.heading(
@@ -14,23 +15,27 @@ def tablero() -> rx.Component:
     #Tablero personajes
     return rx.grid(
         rx.foreach(
-            rx.Var.range(24),
-            lambda i: rx.card(
-                rx.inset(
-                    rx.image(
-                        src=f"{i + 1}.jpg",
-                        width="100%",
-                        height="auto",
-                    ),
-                ),
-                #f"Personaje {i + 1}",
-                height="13em", 
-                width="7.5em"
-            ),
+            nombres_personajes,
+            lambda nombre:
+            carta(nombre),
         ),
         columns="8",
         rows="3",
         spacing="3",
+    )
+
+
+def carta(nombre) -> rx.Component:
+    return rx.card(
+        rx.inset(
+            rx.image(
+                src=nombre + ".jpg", 
+                width="100%", 
+                height="auto"
+            )
+        ), 
+        height="13em", 
+        width="7.5em"
     )
 
 
@@ -39,12 +44,11 @@ def jugador() -> rx.Component:
     return rx.card(
         rx.inset(
             rx.image(
-                src="/" + State.personaje_jugador + ".jpg",
+                src= State.personaje_jugador + ".jpg",
                 width="100%",
                 height="auto",
             ),
         ),
-        #State.personaje_jugador,
         height="17em", 
         width="10em", 
         margin_left="5em"
@@ -61,6 +65,13 @@ def action_bar() -> rx.Component:
     )
 
 
+def boton_panico() -> rx.Component:
+    return rx.button(
+        "Test",
+        on_click = State.obtener_jugador,
+    )
+
+
 def index() -> rx.Component:
     #Página inicial
     return rx.vstack(
@@ -70,6 +81,8 @@ def index() -> rx.Component:
             jugador(),
             align="center",
         ),
+        rx.heading(State.personaje_jugador, font_size="2em"),
+        boton_panico(),
         action_bar(), 
         align="center"
     )

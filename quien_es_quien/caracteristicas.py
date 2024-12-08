@@ -4,11 +4,11 @@ def extraer_palabras_clave(pregunta):
                       'cejas', 'gruesas', 'lado', 'sombrero', 'pendientes', 'castaño', 'finas', 'rubio', 'triste', 'gorra', 'finos','calvo','marrón', 'rubia'] 
     atributo=['grande', 'pequeña']
     lista=['boca','nariz']
-    pregunta = pregunta.lower() 
+    pregunta=pregunta.lower() 
     caracteres_especiales = "?¿:;,.¡!" 
     for caracter in caracteres_especiales: 
-        pregunta = pregunta.replace(caracter, "") 
-    respuesta = []
+        pregunta=pregunta.replace(caracter, "") 
+    respuesta=[]
     pregunta=pregunta.split()
     posicion=0
     for posicion in range(len(pregunta)): 
