@@ -1,4 +1,4 @@
-from quien_es_quien.variables.lista_nombres import nombres_personajes
+from quien_es_quien.variables.lista_nombres import NOMBRES_PERSONAJES
 
 
 def adivinar(pregunta,personaje_jugador):
@@ -12,7 +12,7 @@ def adivinar(pregunta,personaje_jugador):
     pregunta=pregunta.split()
     
     for palabra in pregunta:
-        if palabra.capitalize() in nombres_personajes:
+        if palabra.capitalize() in NOMBRES_PERSONAJES:
             if palabra == personaje_jugador:
                 return "correcto"
             elif palabra != personaje_jugador:

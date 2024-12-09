@@ -1,6 +1,6 @@
 import reflex as rx
 from quien_es_quien.state import State
-from quien_es_quien.variables.lista_nombres import nombres_personajes
+from quien_es_quien.variables.lista_nombres import NOMBRES_PERSONAJES
 from quien_es_quien import style
 
 def cabecera() -> rx.Component:
@@ -11,12 +11,18 @@ def cabecera() -> rx.Component:
         margin= "1em"
     )
 
+def puntuacion() -> rx.Component:
+    #Texto de puntuación
+    return rx.box(
+            rx.text(State.texto_puntuacion, size= "7")
+        )
+
 
 def tablero() -> rx.Component:
     #Tablero personajes
     return rx.grid(
         rx.foreach(
-            nombres_personajes,
+            NOMBRES_PERSONAJES,
             lambda nombre:
             carta(nombre),
         ),
@@ -108,22 +114,30 @@ def boton_reiniciar() -> rx.Component:
     )
 
 
+def creditos() -> rx.Component:
+    return rx.box(
+        rx.markdown("### Checkea este proyecto en [Github](https://github.com/UnTalRubi/quien-es-quien)")
+    )
+
+
 @rx.page(on_load= State.obtener_jugador)
 def index() -> rx.Component:
     #Página principal
     return rx.vstack(
         cabecera(),
+        puntuacion(),
         rx.hstack(
             tablero(),
             jugador(),
             align="center",
         ),
         rx.heading(
-            "Tu personaje es " + State.personaje_jugador,
+            "Tu personaje es aa secreto " ,
             style= style.cabecera
         ),
         boton_reiniciar(),
         input_texto(),
+        creditos(),
         align="center"
     )
 
