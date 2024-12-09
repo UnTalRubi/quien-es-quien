@@ -13,7 +13,7 @@ def extraer_palabras_clave(pregunta):
         pregunta=pregunta.replace(caracter, "")
 
     pregunta=pregunta.split()
-    
+            
     respuesta=[]
     posicion=0
     for posicion in range(len(pregunta)): 

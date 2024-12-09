@@ -3,6 +3,7 @@ from quien_es_quien.logica.personaje_random import random_pj
 from quien_es_quien.logica.caracteristicas import extraer_palabras_clave
 from quien_es_quien.logica.devolver_nombres import comprobar_respuesta
 from quien_es_quien.logica.evaluar_respuesta import correccion
+from quien_es_quien.logica.adivinar_personaje import adivinar
 
 class State(rx.State):
 
@@ -16,13 +17,38 @@ class State(rx.State):
     
     pregunta: str = ""
     palabras_clave: str = ""
-    es_correcto: str = ""
+    correccion_caract: str = ""
+    correccion_adivinar: str = ""
 
 
     @rx.event
     def obtener_jugador(self):
         self.personaje_jugador = random_pj()
 
+
+    def mensaje_adivinar(self):
+        self.mostrar_jugador= True
+        if self.correccion_adivinar != "":
+            if self.correccion_adivinar == "correcto":
+                return rx.toast.success(
+                    "Has ganado!", 
+                    description="El personaje correcto era " + self.personaje_jugador + ".", 
+                    position="top-center",
+                    style={
+                        "border": "3px solid green",
+                        "border-radius": "0.53m",
+                    }
+                )
+            if self.correccion_adivinar == "incorrecto":
+                return rx.toast.error(
+                    "Has perdido!", 
+                    description="El personaje correcto era " + self.personaje_jugador + ".", 
+                    position="top-center",
+                    style={
+                        "border": "3px solid red",
+                        "border-radius": "0.53m",
+                    }
+                )
 
     def comprobacion(self):
         if self.cantidad_tumbados >= 23:
@@ -36,23 +62,26 @@ class State(rx.State):
                     "border-radius": "0.53m",
                 }
             )
-        elif self.es_correcto == "invalido":
+        elif self.correccion_caract == "invalido":
             return rx.toast.warning("Prueba otra cosa!")
-        elif self.es_correcto == "correcto":
+        elif self.correccion_caract == "correcto":
             return rx.toast.success("Tiene la característica!")
-        elif self.es_correcto == "incorrecto":
+        elif self.correccion_caract == "incorrecto":
             return rx.toast.error("No tiene la característica!")
 
 
     @rx.event
     def obtener_caracteristicas(self):
-        self.palabras_clave = extraer_palabras_clave(self.pregunta)
+        self.correccion_adivinar= adivinar(self.pregunta, self.personaje_jugador)
 
+        self.palabras_clave = extraer_palabras_clave(self.pregunta)
         self.personajes_incorrectos= comprobar_respuesta(self.palabras_clave,self.personaje_jugador)
-        self.es_correcto = correccion(self.palabras_clave,self.personaje_jugador)
+        self.correccion_caract = correccion(self.palabras_clave,self.personaje_jugador)
+
         self.personajes_tumbados.extend(self.personajes_incorrectos)
         self.personajes_tumbados= list(set(self.personajes_tumbados))
         self.cantidad_tumbados= len(self.personajes_tumbados)
+
         self.pregunta = ""
         self.palabras_clave = ""
 
