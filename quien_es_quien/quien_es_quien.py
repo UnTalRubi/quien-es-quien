@@ -18,6 +18,14 @@ def puntuacion() -> rx.Component:
         )
 
 
+def switch_developer():
+    return rx.box(
+        rx.switch(on_change= State.cambiar_modo_dev),
+        size= "3",
+        style={"margin_right": "78em"}
+    )
+
+
 def tablero() -> rx.Component:
     #Tablero personajes
     return rx.grid(
@@ -126,14 +134,18 @@ def index() -> rx.Component:
     return rx.vstack(
         cabecera(),
         puntuacion(),
+        switch_developer(),
         rx.hstack(
             tablero(),
             jugador(),
             align="center",
         ),
-        rx.heading(
-            "Tu personaje es aa secreto " ,
-            style= style.cabecera
+        rx.cond(
+            State.modo_dev,
+            rx.heading(
+                "Tu personaje es " + State.personaje_jugador,
+                style= style.cabecera
+            ),
         ),
         boton_reiniciar(),
         input_texto(),

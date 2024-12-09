@@ -1,6 +1,9 @@
+.web
 assets/external/
 *.db
 .web
+./.web
+.web/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

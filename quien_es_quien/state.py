@@ -9,6 +9,7 @@ class State(rx.State):
 
     personaje_jugador: str = "Jugador"
     mostrar_resultado: bool = False
+    modo_dev: bool = False
 
     personajes_incorrectos: list = []
     personajes_tumbados: list = []
@@ -27,6 +28,11 @@ class State(rx.State):
 
 
     @rx.event
+    def cambiar_modo_dev(self):
+        self.modo_dev = not self.modo_dev
+
+
+    @rx.event
     def obtener_jugador(self):
         self.personaje_jugador = random_pj()
         print (self.personaje_jugador)
@@ -38,8 +44,8 @@ class State(rx.State):
                 self.mostrar_resultado= True
                 self.puntos += 30 * (25 - self.cantidad_tumbados)
                 return rx.toast.success(
-                    "Has ganado!", 
-                    description="El personaje correcto era " + self.personaje_jugador + ".",
+                    "Has ganado! El personaje correcto era " + self.personaje_jugador, 
+                    description="Tu puntuación final es: " + str(self.puntos),
                     duration="10000",
                     position="top-center",
                     style={
