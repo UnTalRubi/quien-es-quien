@@ -8,7 +8,6 @@ from quien_es_quien.logica.adivinar_personaje import adivinar
 class State(rx.State):
 
     personaje_jugador: str = "Jugador"
-    mostrar_jugador: bool = False
     mostrar_resultado: bool = False
 
     personajes_incorrectos: list = []
@@ -27,9 +26,9 @@ class State(rx.State):
 
 
     def mensaje_adivinar(self):
-        self.mostrar_jugador= True
-        if self.correccion_adivinar != "":
+        if (self.correccion_adivinar != "" and self.mostrar_resultado== False):
             if self.correccion_adivinar == "correcto":
+                self.mostrar_resultado= True
                 return rx.toast.success(
                     "Has ganado!", 
                     description="El personaje correcto era " + self.personaje_jugador + ".", 
@@ -39,7 +38,9 @@ class State(rx.State):
                         "border-radius": "0.53m",
                     }
                 )
+            
             if self.correccion_adivinar == "incorrecto":
+                self.mostrar_resultado= True
                 return rx.toast.error(
                     "Has perdido!", 
                     description="El personaje correcto era " + self.personaje_jugador + ".", 
@@ -50,9 +51,10 @@ class State(rx.State):
                     }
                 )
 
+
     def comprobacion(self):
-        if self.cantidad_tumbados >= 23:
-            self.mostrar_jugador= True
+        if self.cantidad_tumbados >= 23  and self.correccion_adivinar == "":
+            self.mostrar_resultado= True
             return rx.toast.success(
                 "Has ganado!", 
                 description="El personaje correcto era " + self.personaje_jugador + ".", 
@@ -62,11 +64,12 @@ class State(rx.State):
                     "border-radius": "0.53m",
                 }
             )
-        elif self.correccion_caract == "invalido":
+        
+        elif (self.correccion_caract == "invalido" and self.correccion_adivinar == ""):
             return rx.toast.warning("Prueba otra cosa!")
-        elif self.correccion_caract == "correcto":
+        elif (self.correccion_caract == "correcto"  and self.correccion_adivinar == ""):
             return rx.toast.success("Tiene la característica!")
-        elif self.correccion_caract == "incorrecto":
+        elif (self.correccion_caract == "incorrecto"  and self.correccion_adivinar == ""):
             return rx.toast.error("No tiene la característica!")
 
 
@@ -89,7 +92,6 @@ class State(rx.State):
     @rx.event
     def reiniciar_partida(self):
         self.mostrar_resultado = False
-        self.mostrar_jugador = False
         self.pregunta = ""
         self.personajes_tumbados = []
         self.obtener_jugador()

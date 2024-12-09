@@ -53,13 +53,13 @@ def jugador() -> rx.Component:
     return rx.card(
         rx.inset(
             rx.cond(
-                State.mostrar_jugador,
+                State.mostrar_resultado,
                 rx.image(
                     src= State.personaje_jugador + ".jpg",
                     style= style.imagen_carta
                 ),
             rx.cond(
-                ~State.mostrar_jugador,
+                ~State.mostrar_resultado,
                 rx.image(
                     src= "ocultar.png",
                     style= style.imagen_carta
@@ -82,14 +82,14 @@ def input_texto() -> rx.Component:
                 type= "text",
                 width="100%"
             ),
-            on_submit=[State.obtener_caracteristicas, State.comprobacion],
+            on_submit=[State.obtener_caracteristicas, State.mensaje_adivinar, State.comprobacion],
             reset_on_submit=True,
             width="20em"
         ),
         rx.button(
             "Preguntar",
             type= "submit",
-            on_click= [State.obtener_caracteristicas, State.comprobacion],
+            on_click= [State.obtener_caracteristicas, State.mensaje_adivinar, State.comprobacion],
             style=style.boton,
             _hover=style.boton_hover
         ),
