@@ -1,5 +1,5 @@
 import pytest
-from quien_es_quien.caracteristicas import extraer_palabras_clave
+from quien_es_quien.logica.caracteristicas import extraer_palabras_clave
 
 @pytest.mark.parametrize(
         "input, expected",

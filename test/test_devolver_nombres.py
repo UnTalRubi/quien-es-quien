@@ -1,5 +1,5 @@
 import pytest
-from quien_es_quien.devolver_nombres import comprobar_respuesta
+from quien_es_quien.logica.devolver_nombres import comprobar_respuesta
 
 @pytest.mark.parametrize(
         "input1, input2, expected",

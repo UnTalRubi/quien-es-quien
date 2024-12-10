@@ -1,5 +1,5 @@
 import pytest
-from quien_es_quien.personaje_random import random_pj
+from quien_es_quien.logica.personaje_random import random_pj
 
 @pytest.mark.parametrize(
         "expected",

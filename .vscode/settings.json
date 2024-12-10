@@ -3,13 +3,22 @@
         "README",
         "REFLEX",
 <<<<<<< HEAD
+<<<<<<< HEAD
         "CARACTERISTICAS"
 =======
+=======
+        "REFLEX",
+>>>>>>> 12a178b0540d696e496ebf250e17377927207dd2
         "PERSONAJES",
         "RANDOM PERSONAJE",
         "IMAGENES",
         "PAGINA PRINCIPAL",
+<<<<<<< HEAD
         "CARACTERÍSTICAS"
 >>>>>>> b3892a057da72bfeeb1304ab3ba128c18448e5df
+=======
+        "CARACTERÍSTICAS",
+        "POPUP"
+>>>>>>> 12a178b0540d696e496ebf250e17377927207dd2
     ]
 }
