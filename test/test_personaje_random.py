@@ -13,14 +13,9 @@ def test_personaje_random(expected):
     random_list=[]
     for _ in range(300):
         random_list.append(random_pj())
-    
-    random_list.sort()
 
-    position = 1
-    while position < len(random_list):
-        if random_list[position] == random_list[position - 1]:
-            random_list.pop(position)
-        else:
-            position += 1
+    random_list = set(random_list)
+    random_list = list(random_list)
+    random_list.sort()
 
     assert random_list == expected
