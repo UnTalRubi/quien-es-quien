@@ -8,13 +8,13 @@ def cabecera() -> rx.Component:
     return rx.heading(
         "¿Quién es Quién?",
         as_= "h1", size= "8",
-        margin= "1em"
+        margin= "0.5em"
     )
 
 def puntuacion() -> rx.Component:
     #Texto de puntuación
     return rx.box(
-            rx.text(State.texto_puntuacion, size= "7")
+            rx.text(State.texto_puntuacion, size= "6")
         )
 
 
