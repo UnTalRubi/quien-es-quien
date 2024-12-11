@@ -22,35 +22,34 @@
     -   [**Coverage**](#coverage)
     -   [**Test de unidad**](#test-de-unidad)
     -   [**Test de integración**](#test-de-integración)
--   [**Análisis del tiempo invertido**](#Tiempo-invertido)
-    -   [**Clockify + Wakatime**](#clockify)
+-   [**Análisis del tiempo invertido**](#análisis-del-tiempo-invertido)
+    -   [**Wakatime**](#wakatime)
     -   [**Justificación temporal**](#justificación-temporal)
 -   [**Conclusiones**](#conclusiones)
     -   [**Posibles mejoras**](#posibles-mejoras)
     -   [**Dificultades**](#dificultades)
-
+---
 # **Introducción**
 
 Proyecto de programación dirigida a eventos empleando el framework de ***reflex*** que permite el desarrollo simultáneo del front end y back end de una página web empleando el lenguaje python.
 
-La parte fundamental de trabajo es logar que el usuario pueda interactuar con el entorno web mediante eventos y que empleando lógica python la página cambie acorde a las acciones del jugador. 
+La parte fundamental de trabajo es logar que el usuario pueda interactuar con el entorno web mediante eventos y que empleando lógica ***python*** la página cambie acorde a las acciones del jugador. 
 
 El programa consiste en el clásico juego de mesa de **¿Quién es quién?** para un solo jugador, quien tratará de adivinar su personaje introduciendo características que reduzcan la cantidad de personajes en los paneles que se presentan hasta que logre adivinar el suyo. 
 
 ***Capturas de la aplicación:***
 
 ![inicio_partida](/images/captura1.png)
-
+---
 **Comienzo de la partida, donde se asigna un personaje al jugador y se muestra el tablero.**
 
 ![partida_avanzada](/images/captura2.png)
-
+---
 **Partida avanzada en la que ya se han tumbado personajes introduciendo características sobre su apariencia.**
 
 ![fin_partida](/images/captura3.png)
-
+---
 **Fin de la partida en la que el jugador ha adivinado el personaje y se muestra un mensaje de victoria con su puntuación.**
-
 
 # **Manual**
 
@@ -74,7 +73,7 @@ Ahora instalaremos el entorno virtual venv:
 ```
  python -m venv venv
 ```
-
+---
 A continuación activaremos el entorno virtual:
 
 - En Windows:
@@ -85,7 +84,7 @@ A continuación activaremos el entorno virtual:
 ```
 source venv/bin/activate
 ```
-
+---
 Lo último que necesitamos es instalar las dependencias. Hemos creado un archivo requirements.txt que incluye reflex y todos sus componentes necesarios para el proyecto. Para ello ejecutamos el siguiente comando:
 ```
 pip install -r requirements.txt
@@ -97,6 +96,7 @@ pip install -r requirements.txt
 ```
 reflex run
 ```
+---
 2) Tardará un tiempo en compilar el programa y crear la web en nuestro localhost. Una vez haya terminado nos dirá en que puerto se encuenta la página. Por lo general será en uno de los siguientes dos:
 ```
 localhost:3000 
@@ -105,19 +105,26 @@ localhost:3000
 ```
 localhost:3001
 ```
+---
 3) El juego comenzará asignándonos un personaje aleatorio que deberemos adivinar. También se mostrarán todos los personajes posibles.
-
+---
 4) Introduciremos las características que creamos que podría tener nuestro personaje. En caso de acierto obtendremos puntos y en caso de que no equivoquemos se irán restando puntos a nuestra puntuación.
-
+---
 5) Una vez enviemos el texto se nos indica si nuestro personaje tiene o no la característica que hemos tratado de adivinar. Se ocultarán los personajes que no tengan la misma característica que el nuestro.
-
+---
 6) Continuaremos tratando de adivinar características y ocultando personajes no posibles hasta que solo quede uno y descubramos quienes somos.
-
+---
 7) En caso de que así queramos también podemos tratar de adivinar con antelación el personaje que creamos ser enviando su nombre.
-
+---
 8) El juego nos mostrará finalmente nuestro personaje en la carta de la derecha y nos dará un mensaje de victoria o derrota dependiendo de si hemos acertado o no, además de mostrarnos nuestra puntuación final.
-
+---
 9) Una vez terminada la partida podemos darle al botón de "Reiniciar Partida" para que se vuelvan a mostrar todos los personajes, se restablezca la puntuación y se nos asigne un nuevo personaje.
+
+# **Metodología**
+
+Para llevar a cabo el proyecto hemos empleado la metodología de desarrollo ágil de ***TDD***, que consiste en emplear casos test para determinar el comportamiento de cada uno de los módulos que vamos a programar. Este método de trabajo nos ha permitido desarrollar el código de forma más clara y mantenible, además de forzarnos a planificar mejor el desarrollo antes de ponernos a picar código.
+
+La otra metodología que utilizamos es ***Kanban***, que nos ha ayudado a organizar mejor la carga de trabajo al tener una visualización más clara de las diferentes partes de la aplicación y las funcionalidades que debíamos programar, así como asignar más firmemente las prioridades.
 
 # **Descripción técnica**
 
@@ -127,6 +134,8 @@ El juego de quién es quién consta de 24 tarjetas donde el usuario tiene que ad
 - Una pantalla de juego con el tablero de los personajes.
 - Selección aleatoria del personaje a adivinar.
 - Cuadro de texto para inputar las preguntas sobre las características de los personajes.
+
+---
 
 Con estos criterios básicos creamos la siguiente **NOT LIST**:
 
@@ -161,20 +170,20 @@ Con estos criterios básicos creamos la siguiente **NOT LIST**:
 - El jugador debe elegir una carta volteada.
 - Asignada aleatoriamente.
 - El juego debe comenzar cuando el jugador tenga la carta asignada.
-
+---
 2) Historia de Usuario: Introducir características en una caja de texto.
 - El jugador debe intoducir las posibles características en un cuadro de texto.
 - Al introducirla debe ser filtrada y mostrar solo los personajes que tengan esa caracerística.
-
+---
 3) Historia de Usuario: Elegir el último personaje en pie. 
 - Debe quedar un único personaje en el tablero.
 - Gana automáticamente la partida. 
-
+---
 4) Historia de usuario: Adivinar al personaje antes de tiempo.
 - El jugador puede introducir un nombre en la caja  de texto.
 - Si el nombre introducido es correcto, gana la partida.
 - Si el nombre introducido es incorrecto, pierde la partida.
-
+---
 5) Historia de Usuario: Elegir si quiere volver a jugar. 
 - Al finalizar cada partida el jugador debe poder elegir si quiere o no volver a jugar. 
 - Si elige volver a jugar debe reiniciarse el juego y empezar una nueva partida. 
@@ -185,11 +194,11 @@ Con estos criterios básicos creamos la siguiente **NOT LIST**:
 Contiene:
 - El **Frontend**, es el encargado de la interfaz de usuario. Todo con lo que interactúa el usuario y refleja el estado de la aplicación.
 
-* Reflex compila el frontend a [Next.js](https://nextjs.org/) que es un framewok React y lo envia a un puerto al que podemos acceder. 
+1. Reflex compila el frontend a [Next.js](https://nextjs.org/) que es un framewok React y lo envia a un puerto al que podemos acceder. 
 
-* Reflex proporciona múltiples componentes propios que permiten crear de forma rápida sus respectivos elementos html en la página web, y están basados en [Radix](https://www.radix-ui.com/), una librería open source de componentes React.
+2. Reflex proporciona múltiples componentes propios que permiten crear de forma rápida sus respectivos elementos html en la página web, y están basados en [Radix](https://www.radix-ui.com/), una librería open source de componentes React.
 
-* Para su estilo, existe la posibilidad de emplear temas para cambiar la apariencia de la web, así como asignar diferentes props ``CSS`` a sus componentes propios a través de la librería [Emotion](https://emotion.sh/docs/introduction).
+3. Para su estilo, existe la posibilidad de emplear temas para cambiar la apariencia de la web, así como asignar diferentes props ``CSS`` a sus componentes propios a través de la librería [Emotion](https://emotion.sh/docs/introduction).
 
 - El **Backend**, es la lógica de la aplicación donde el controlador actúa como intermediario entre la vista y el modelo. El controlador recibe las solicitudes del usuario, procesa la lógica a través del modelo, que se realiza en la clase ``State`` y devuelve la respuesta a la vista para actualizarse.
 
@@ -199,6 +208,40 @@ Contiene:
 
 La estructura del proyecto es la siguiente:
 
+```
+quien-es-quien/
+├── assets/                             # Imágenes para las cartas
+│   └── personajes.png                  
+├── images/                             # Imagenes del README
+│   └── capturas.png                    
+├── quien_es_quien/
+│   ├── logica/                         # Lógica python
+│   │   ├── adivinar_personaje.py
+│   │   ├── caracteristicas.py
+│   │   ├── devolver_nombres.py
+│   │   ├── evaluar_respuesta.py
+│   │   └── personaje_random.py
+│   ├── variables/                      # Variables globales
+│   │   ├── lista_nombres.py
+│   │   └── lista_personajes.py
+│   ├── __init__.py
+│   ├── quien_es_quien.py               # Punto de entrada de la app
+│   ├── state.py                        # Gestión del estado
+│   └── style.py                        # Estilo de la web
+├── test/                               # Test de pytest
+│   ├── __init__.py
+│   ├── test_adivinar_personaje.py
+│   ├── test_caracteristicas.py
+│   ├── test_devolver_nombres.py
+│   ├── test_evaluar_respuesta.py
+│   └── test_personaje_random.py
+├── .gitignore
+├── LICENSE
+├── README.md                           # Documentación
+├── requirements.txt                    # Dependencias
+└── rxconfig.py
+```
+---
 ![diagrama](/images/diagrama_dependencias.png)
 
 ## **Componentes**
@@ -241,12 +284,16 @@ La estructura del proyecto es la siguiente:
 
 ## **Backend**
 
-
-- Modelo: Gestiona el estado del juego y la lógica de la aplicación.
-- Controlador: Maneja las acciones del usuario y actualiza el estado del juego.
+- FastAPI
+- WebSockets
+- SQLite
+- ASGI
 
 ## **Frontend**
-- Vista: Es la interfaz del usuario donde el usuario interactúa con la aplicación.
+- React
+- Next.js
+- TypeScript
+- CSS (Tailwind)
 
 # **Pruebas**
 
@@ -285,7 +332,7 @@ def test_adivinar_personaje(input1,input2,expected):
     
     assert adivinar(input1,input2) == expected
 ```
-
+---
 - test_caracteristicas
 ```python
 @pytest.mark.parametrize(
@@ -306,7 +353,7 @@ def test_caracteristicas(input,expected):
     
     assert extraer_palabras_clave(input) == expected
 ```
-
+---
 - test_devolver_nombres
 ```python
 @pytest.mark.parametrize(
@@ -322,7 +369,7 @@ def test_caracteristicas(input1,input2,expected):
     
     assert comprobar_respuesta(input1, input2) == expected
 ```
-
+---
 - test_evaluar_respuesta
 ```python
 @pytest.mark.parametrize(
@@ -339,7 +386,7 @@ def test_caracteristicas(input1,input2,expected):
     
     assert correccion(input1, input2) == expected
 ```
-
+---
 Y el que más nos rompió la cabeza:
 
 - test_personaje_random
@@ -367,148 +414,59 @@ def test_personaje_random(expected):
 
 ## **Test de integración**
 
-**No empleamos test de integración, puesto que los diferentes módulos de lógica del proyecto no se comunican entre ellos, ya que se llaman y relacionan a través de state.**
+**No empleamos test de integración, puesto que los diferentes módulos de lógica del proyecto no se comunican entre ellos; se llaman y relacionan a través de state.**
+
 
 # **Análisis del tiempo invertido**
 
-## **Clockify + Wakatime**
-- **`adivinar_personaje`** 
+Según el log de **Wakatime**, el tiempo invertido en este proyecto es:
 
-- **`características`** 
+![tiempo global](/images/wakatime_global.png)
 
-- **`devolver_nombres`** 
+*Que equivaldría a unos 246 tokens.*
 
-- **`evaluar_respuesta`** 
+## **Wakatime**
 
-- **`personaje_random`** 
+![Captura 29 Noviembre](/images/wakatime_29N.png)
+*Captura del 29 de Noviembre.*
 
-- **`lista_nombres`** 
+---
+![Captura 06 Diciembre](/images/wakatime_06D.png)
+*Captura del 06 de Diciembre.*
 
-- **`lista_personajes`** 
+---
+![Captura 29 Noviembre](/images/wakatime_11D.png)
+*Captura del 11 de Diciembre.*
 
-- **`quien_es_quien`** 
-
-- **`state`** 
-
-- **`style`** 
-
+---
 ## **Justificación temporal**
 
+* Durante la primera semana el tiempo que empleamos fue principalmente definir la NOT LIST, las historias de usuario, establecer las características que emplearíamos para cada personaje y la función que nos permitiría asignar un personaje aleatorio al jugador. Además de que creamos la estructura básica de la página con reflex.
 
+* La segunda semana comenzamos con la función para poder filtrar los personajes según sus características y que nos devolvuelva los nombres de personajes a tumbar, un botón para reinciar la partida, y continuamos ampliando los componentes de la página de reflex. Lo que más tiempo requirió fue mostrar las imágenes en las cartas del grid mediante un foreach y que se asignasen correctamente los nombres. Teniendo en cuenta que todavía estábamos comenzando a usar el framework no comprendíamos las limitaciones del mismo.
 
+* En la recta final del proyecto completamos la función para adivinar según el nombre del personaje y así dimos por finalizadas las historias de usuario que establecimos al principio del proyecto. A mayores añadimos funcionalidades extra como el sistema de puntuación, el botón para mostrar el nombre del personaje del jugador y un editor básico de la interfaz para tener modo día/noche, bordes y colores personalizados. El resto del tiempo lo dedicamos a completar la documentación.
 
 # **Conclusiones**
 
+Este proyecto, aunque de primeras pareciese inabarcable, ha resultado ser una puesta a prueba de todo lo que hemos trabajado durante el trimestre, además de que nos ha forzado a investigar y buscar soluciones a problemas a los que nos enfrentaríamos constantemente en un proyecto real. Además, el hecho de que haya sido una propuesta tan desafiante me ha motivado todavía más a verla realizada, forzándo a activar el *modo diablo* aunque eso haya podido repercutir a mi estabilidad física y mental por el escaso tiempo del que disponíamos para hacerla. Necesito dormir.
+
 ## **Posibles mejoras**
-El proyecto podría mejorarse con unos añadidos a la app:
-- Con un sistema de puntos dependiendo de los personajes que queden en el tablero cuando se acierte y guardarlos en un sistema de ranking junto con las partidas.
-- Con una página personalizable al gusto del ususario y efectos visuales en cada interacción del ususario con la interfaz.
-- Con un método de ajuste de la dificultad, bien sea añadiendo o quitando personajes según la dificultad deseada por el jugador o si al tener el personaje la caracterísitica preguntada sea el jugador quien tiene que tumbar los personajes y se le otroge así el beneficio de la duda en cada personaje del tabero.
-- La posibilidad de personalizar los personajes y/o intoducir fotos.
+El proyecto podría mejorarse añadiendo ciertas funcionalidades a la app:
+
+- Logramos crear un sistema de puntuación, pero sería interesante crear un **leaderboard** con las puntuaciones de partidas pasadas.
+
+- Añadir **efectos visuales** en cada interacción del ususario con la interfaz, así como emplear efectos de **sonido**.
+
+- Con un método de **ajuste de la dificultad**; bien sea añadiendo o quitando personajes según la dificultad deseada o obligando al jugador a tumbar a los personajes de forma manual, dándole únicamente una contestación a su input, otorgando así el beneficio de la duda a cada personaje del tabero.
+
+- La posibilidad de **personalizar los personajes** del tablero añadiendo nuevos y/o intoducir fotos.
 
 ## **Dificultades**
-Algunas de las dificultades encontradas al programar el proyecto sería al introducir las características, ya que, no todos intoducirían la misma característica con las mismas palabras; el framework Reflex en algunos casos no funciona como debería y el test del personaje random.
+Algunas de las dificultades encontradas al desarrollar el proyecto han sido:
 
-# ¿Quién es Quién?
+- Entender la forma en la que interactúan los componentes de ***reflex***, y no poder emplear funciones complejas desde dentro de ellos, limitando las capacidades de comunicación entre diferentes módulos a únicamente variables de ``state``.
 
-Este repositorio contiene el código fuente del juego *¿Quién es quién?* desarrollado con la ayuda del framework **Reflex**.
-## Descripción 🚀
+- La introducción de las ***características*** de los personajes, ya que, no todos los jugadores intoducirían la misma característica con las mismas palabras, lo que nos obligó a ofrecer diferentes soluciones para posibles inputs.
 
-Proyecto de programación dirigida a eventos empleando el framework de ***reflex*** que permite el desarrollo simultáneo del front end y back end de una página web empleando únicamente el lenguaje python.
-
-El programa consiste en el clásico juego de mesa de **¿Quién es quién?** para un solo jugador, quien tratará de adivinar su personaje introduciendo características que reduzcan la cantidad de personajes en los paneles que se presentan hasta que logre adivinar el suyo.
-
-### Características principales
-
-- Nada por el momento
-## Instalación y configuración 🛠
-
-### Prerrequisitos
-
-- **Python 3.X**
-
-### Instalación
-
-1. Clonar este repositorio
-
-     ```bash
-     $ git clone https://github.com/UnTalRubi/quien-es-quien
-     $ cd quien-es-quien
-     ```
-
-2. Instalar el entorno virtual
-
-     ```bash
-     $ py -m venv venv
-     ```
-
-3. Activa el entorno virtual
-
-     ```bash
-     $ .\venv\Scripts\activate
-     ```
-
-4. Instala el framework reflex
-
-     ```bash
-     $ pip install reflex
-     ```
-
-5. Ejecuta reflex
-
-     ```bash
-     $ reflex run
-     ```
-
-6. Accede a la página web
-
-     ```bash
-     localhost:3000
-     ```
-## Screenshots 📸
-
-![Alt text](/path/to/image.jpg)
-
-"Breve descripción de lo que muestra la captura."
-## Historias de usuario 🎭
-
-
-|**¿Quién?** | **¿Qué quiere hacer?** | **¿Para qué lo quiere hacer?** |
-|:----------:|:----------------------:|:------------------------------:|
-|  El jugador  |  Elegir una carta volteada / Tener asignada una carta aleatoria  |  Para comenzar a jugar la partida adivinando su personaje  |
-|  El jugador  |  Introducir características en una caja de texto  |  Para filtrar los personajes del tablero que no son el suyo  |
-|  El jugador  |  Elegir el último personaje en pie  |  Para ganar la partida  |
-|  El jugador  |  Elegir si quiere volver a jugar  |  Para comenzar una nueva partida  |
-
-
-
-## Estructura de proyecto 📂
-
-```
-quien-es-quien/
-├── .gitignore/
-├── LICENSE/
-└── README/
-```
-
-##  Créditos 🎬
-
-### Este proyecto ha sido desarrollado por:
-
-- **María Alonso Alonso**
-   
-    [@avedado](https://github.com/avedado)
-
-- **Rubén Quintas Alonso**
-    
-    [@untalrubi](https://github.com/UnTalRubi)
-
-### Reconocimientos adicionales:
-
-**Framework Reflex**
-
-https://reflex.dev/
-
-# Utilidades
-
-https://readme.so/es/editor
+- El framework ***Reflex*** es un castillo de naipes, y cualquiera de sus múltiples dependencias pueden provocar que explote todo. En una ocasíon se generó un error en una dependencia de Next.js que obligó a borrar el proyecto local y volverlo a clonar con git. Lo más gracioso es que dicho error surgió por ajustar el márgen del estilo de un componente mientras estaba compilando en segundo plano.
