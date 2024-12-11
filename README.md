@@ -1,6 +1,5 @@
 # ¿Quién es Quién?
 
-
 **Tabla de contenidos**
 
 -   [**Introducción**](#introducción)
@@ -10,7 +9,7 @@
     -   [**Uso**](#uso)
 -   [**Metodología**](#metodología)
 -   [**Descripción técnica**](#descripción-técnica)
-    -   [**Requisitos funcionales/no funcionales, NOT LIST**](#partes-interesadas-y-requisitos-funcionalesno-funcionales)
+    -   [**Requisitos funcionales/no funcionales, NOT LIST**](#requisitos-funcionalesno-funcionales-not-list)
     -   [**Historias de usuario**](#historias-de-usuario)
     -   [**Arquitectura de la aplicación**](#arquitectura-de-la-aplicación)
 -   [**Diseño**](#diseño)
@@ -30,7 +29,6 @@
     -   [**Posibles mejoras**](#posibles-mejoras)
     -   [**Dificultades**](#dificultades)
 
-
 # **Introducción**
 
 Proyecto de programación dirigida a eventos empleando el framework de ***reflex*** que permite el desarrollo simultáneo del front end y back end de una página web empleando el lenguaje python.
@@ -39,13 +37,19 @@ La parte fundamental de trabajo es logar que el usuario pueda interactuar con el
 
 El programa consiste en el clásico juego de mesa de **¿Quién es quién?** para un solo jugador, quien tratará de adivinar su personaje introduciendo características que reduzcan la cantidad de personajes en los paneles que se presentan hasta que logre adivinar el suyo. 
 
-- *Capturas de la aplicación:*
+***Capturas de la aplicación:***
 
-![captura1](/images/captura1.png)
+![inicio_partida](/images/captura1.png)
 
-![captura2](/images/captura2.png)
+**Comienzo de la partida, donde se asigna un personaje al jugador y se muestra el tablero.**
 
-![captura3](/images/captura3.png)
+![partida_avanzada](/images/captura2.png)
+
+**Partida avanzada en la que ya se han tumbado personajes introduciendo características sobre su apariencia.**
+
+![fin_partida](/images/captura3.png)
+
+**Fin de la partida en la que el jugador ha adivinado el personaje y se muestra un mensaje de victoria con su puntuación.**
 
 
 # **Manual**
@@ -138,16 +142,17 @@ Con estos criterios básicos creamos la siguiente **NOT LIST**:
 |:-:|
 |Sistema de puntuación|
 |Música y SFX|
-|Animaciones para girar las cartas de los personajes|
+|Animaciones y efectos visuales|
 |Interfaz personalizable|
 
 ## **Historias de usuario**
 
 |**¿Quién?** | **¿Qué quiere hacer?** | **¿Para qué lo quiere hacer?** |
-|:----------:|:----------------------:|:------------------------------:|
-|  El jugador  |  Elegir una carta volteada / Tener asignada una carta aleatoria  |  Para comenzar a jugar la partida adivinando su personaje  |
+|:-:|:-:|:-:|
+|  El jugador  |  Elegir una carta volteada / Asignar una carta aleatoria  |  Para comenzar a jugar la partida tratando de adivinar su personaje  |
 |  El jugador  |  Introducir características en una caja de texto  |  Para filtrar los personajes del tablero que no son el suyo  |
-|  El jugador  |  Elegir el último personaje en pie  |  Para ganar la partida  |
+|  El jugador  |  Elegir el último personaje en pie  |  Para finalizar la partida  |
+|  El jugador  |  Adivinar al personaje antes de tiempo |  Para ganar o perder la partida  | 
 |  El jugador  |  Elegir si quiere volver a jugar  |  Para comenzar una nueva partida  |
 
 ## **Critererios de aceptación**
@@ -162,12 +167,15 @@ Con estos criterios básicos creamos la siguiente **NOT LIST**:
 - Al introducirla debe ser filtrada y mostrar solo los personajes que tengan esa caracerística.
 
 3) Historia de Usuario: Elegir el último personaje en pie. 
-- El jugador debe seleccionar el último personaje presente en el tablero.
-- Al seleccionar al personaje se debe verificar si coincide o no con el personaje elegido en la historia 1. 
-- Si es correcto gana la partida. 
-- Si es incorrecto pierde la partida. 
+- Debe quedar un único personaje en el tablero.
+- Gana automáticamente la partida. 
 
-4) Historia de Usuario: Elegir si quiere volver a jugar. 
+4) Historia de usuario: Adivinar al personaje antes de tiempo.
+- El jugador puede introducir un nombre en la caja  de texto.
+- Si el nombre introducido es correcto, gana la partida.
+- Si el nombre introducido es incorrecto, pierde la partida.
+
+5) Historia de Usuario: Elegir si quiere volver a jugar. 
 - Al finalizar cada partida el jugador debe poder elegir si quiere o no volver a jugar. 
 - Si elige volver a jugar debe reiniciarse el juego y empezar una nueva partida. 
 - El tablero de juego debe ser restablecido a su estado inicial.
@@ -175,11 +183,21 @@ Con estos criterios básicos creamos la siguiente **NOT LIST**:
 ## **Arquitectura de la aplicación**
 
 Contiene:
-- El **Frontend**, es el encargado de la interfaz de usuario. Todo con lo que interactúa el usuario y puede contener HTML, CSS y JavaScript. 
-- El **Backend**, es la lógica de la aplicación donde el controlador actúa como intermediario entre la vista y el modelo. El controlador recibe las solicitudes del frontend procesa la lógica a través del modelo y devuelve lass respuestas a la vista para actualizarse.
-- **App**, es la interacción entre el Frontend y el Backend. El Frontend presenta los datos al usuario y el Backend los maneja con la lógica de la aplicación.
+- El **Frontend**, es el encargado de la interfaz de usuario. Todo con lo que interactúa el usuario y refleja el estado de la aplicación.
+
+* Reflex compila el frontend a [Next.js](https://nextjs.org/) que es un framewok React y lo envia a un puerto al que podemos acceder. 
+
+* Reflex proporciona múltiples componentes propios que permiten crear de forma rápida sus respectivos elementos html en la página web, y están basados en [Radix](https://www.radix-ui.com/), una librería open source de componentes React.
+
+* Para su estilo, existe la posibilidad de emplear temas para cambiar la apariencia de la web, así como asignar diferentes props ``CSS`` a sus componentes propios a través de la librería [Emotion](https://emotion.sh/docs/introduction).
+
+- El **Backend**, es la lógica de la aplicación donde el controlador actúa como intermediario entre la vista y el modelo. El controlador recibe las solicitudes del usuario, procesa la lógica a través del modelo, que se realiza en la clase ``State`` y devuelve la respuesta a la vista para actualizarse.
+
+- **App**, es la interacción entre el Frontend y el Backend. El Frontend presenta los datos al usuario y el Backend los maneja con la lógica de la aplicación. En Reflex, nuestro *frontend* `quien_es_quien` establece la estructura de la web con la que el usuario interactúa, y añade *estilo* y personalización a sus componentes a través de `style.py`. Todos los eventos del *backend* se llevan a cabo en `state.py`, que importa los diferentes módulos *python* que procesan los eventos del programa.
 
 ## **Diseño**
+
+La estructura del proyecto es la siguiente:
 
 ![diagrama](/images/diagrama_dependencias.png)
 
@@ -209,11 +227,21 @@ Contiene:
 
 ## **Tecnologías y Herramientas utilizadas**
 
-- Lenguaje de Programación: Python.
-- Framework: Reflex.
-- Herramientas de Desarrollo: Git como sistema de control de versiones, GitHub y Visual Studio Code.
+|Lenguaje empleado|Framework|Herramientas|
+|:-:|:-:|:-:|
+|[Python 3](https://www.python.org/)|[Reflex](https://reflex.dev/)| [Git](https://git-scm.com/), [Github](https://github.com/), [VSCode](https://code.visualstudio.com/), [Discord](https://discord.com/)|
+
+**Git: como sistema de control de versiones.**
+
+**GitHub: para compartir el repositorio y almacenarlo en la nube. También su apartado de projects para llevar a cabo una metodología kanban.**
+
+**Visual Studio Code: para el desarrollo de la aplicación.**
+
+**Discord: como medio de comunicación en el equipo.**
 
 ## **Backend**
+
+
 - Modelo: Gestiona el estado del juego y la lógica de la aplicación.
 - Controlador: Maneja las acciones del usuario y actualiza el estado del juego.
 
@@ -238,6 +266,8 @@ Todos los test se encuentran en el directorio de: ``/quien_es_quien/test``
 
 Durante el desarrollo empleamos test de unidad como el siguiente:
 
+- test_adivinar_personaje
+
 ```python
 @pytest.mark.parametrize(
         "input1, input2, expected",
@@ -256,7 +286,63 @@ def test_adivinar_personaje(input1,input2,expected):
     assert adivinar(input1,input2) == expected
 ```
 
+- test_caracteristicas
+```python
+@pytest.mark.parametrize(
+        "input, expected",
+        [
+            ("¿Tiene la boca grande?", "boca grande"),
+            ("Es una mujer?", "mujer"),
+            ("¿Tiene boca?", ""),
+            ("Tiene el pelo negro y corto?", "negro"),
+            ("¿Lleva GaFa:s?", "gafas"),
+            ("¿Tiene la nariz pequeña?", "nariz pequeña"),
+            ("¿Tiene pequeña la nariz?", ""),
+            ("¿Está ConTenta?", "contenta")
+        ]
+)
+
+def test_caracteristicas(input,expected):
+    
+    assert extraer_palabras_clave(input) == expected
+```
+
+- test_devolver_nombres
+```python
+@pytest.mark.parametrize(
+        "input1, input2, expected",
+        [
+            ("mujer", "Tom", ["Susan","Claire","Anne","Anita","Maria"]),
+            ("boca grande", "Philip", ["Claire","Anne","Anita","Joe","Bill","Alfred","Tom","Sam","Richard","Paul","Maria","Frans","Herman","Bernard"]),
+            ("","Anne",[])
+        ]
+)
+
+def test_caracteristicas(input1,input2,expected):
+    
+    assert comprobar_respuesta(input1, input2) == expected
+```
+
+- test_evaluar_respuesta
+```python
+@pytest.mark.parametrize(
+        "input1, input2, expected",
+        [
+            ("mujer", "Tom", "incorrecto"),
+            ("boca grande", "Philip", "correcto"),
+            ("sombrero", "Maria", "correcto"),
+            ("","Anne","invalido")
+        ]
+)
+
+def test_caracteristicas(input1,input2,expected):
+    
+    assert correccion(input1, input2) == expected
+```
+
 Y el que más nos rompió la cabeza:
+
+- test_personaje_random
 
 ```python
 @pytest.mark.parametrize(
@@ -267,8 +353,8 @@ Y el que más nos rompió la cabeza:
 )
 
 def test_personaje_random(expected):
-    
     random_list=[]
+
     for _ in range(300):
         random_list.append(random_pj())
 
@@ -281,23 +367,47 @@ def test_personaje_random(expected):
 
 ## **Test de integración**
 
+**No empleamos test de integración, puesto que los diferentes módulos de lógica del proyecto no se comunican entre ellos, ya que se llaman y relacionan a través de state.**
 
-![aaa](/images/xdd.png)
+# **Análisis del tiempo invertido**
+
+## **Clockify + Wakatime**
+- **`adivinar_personaje`** 
+
+- **`características`** 
+
+- **`devolver_nombres`** 
+
+- **`evaluar_respuesta`** 
+
+- **`personaje_random`** 
+
+- **`lista_nombres`** 
+
+- **`lista_personajes`** 
+
+- **`quien_es_quien`** 
+
+- **`state`** 
+
+- **`style`** 
+
+## **Justificación temporal**
 
 
 
 
+# **Conclusiones**
 
+## **Posibles mejoras**
+El proyecto podría mejorarse con unos añadidos a la app:
+- Con un sistema de puntos dependiendo de los personajes que queden en el tablero cuando se acierte y guardarlos en un sistema de ranking junto con las partidas.
+- Con una página personalizable al gusto del ususario y efectos visuales en cada interacción del ususario con la interfaz.
+- Con un método de ajuste de la dificultad, bien sea añadiendo o quitando personajes según la dificultad deseada por el jugador o si al tener el personaje la caracterísitica preguntada sea el jugador quien tiene que tumbar los personajes y se le otroge así el beneficio de la duda en cada personaje del tabero.
+- La posibilidad de personalizar los personajes y/o intoducir fotos.
 
-
-
-
-
-
-
-
-
-
+## **Dificultades**
+Algunas de las dificultades encontradas al programar el proyecto sería al introducir las características, ya que, no todos intoducirían la misma característica con las mismas palabras; el framework Reflex en algunos casos no funciona como debería y el test del personaje random.
 
 # ¿Quién es Quién?
 

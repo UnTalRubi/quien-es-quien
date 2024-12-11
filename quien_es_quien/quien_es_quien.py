@@ -123,6 +123,7 @@ def boton_reiniciar() -> rx.Component:
 
 
 def creditos() -> rx.Component:
+    #Creditos Github
     return rx.box(
         rx.markdown("### Checkea este proyecto en [Github](https://github.com/UnTalRubi/quien-es-quien)")
     )
