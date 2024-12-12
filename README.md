@@ -421,6 +421,9 @@ def test_personaje_random(expected):
 
 Según el log de **Wakatime**, el tiempo invertido en este proyecto es:
 
+Rubi
+---
+
 ![tiempo global](/images/wakatime_global.png)
 
 *Que equivaldría a unos 246 tokens.*
@@ -439,6 +442,37 @@ Según el log de **Wakatime**, el tiempo invertido en este proyecto es:
 *Captura del 11 de Diciembre.*
 
 ---
+
+Maria
+---
+
+Al no tener el wakatime configurado, según los cálculos salen los siguientes tokens:
+- **`quien_es_quien`**: 24 tokens.
+
+- **`style`**: 8 tokens.
+
+- **`state`**: 24 tokens.
+
+- **`lista_nombres`**: 8 tokens.
+
+- **`lista_personajes`**: 16 tokens.
+
+- **`personaje_random`**: 32 tokens.
+
+- **`caracteristicas`**: 36 tokens.
+
+- **`devolver_nombres`**: 32 tokens.
+
+- **`evaluar_respuesta`**: 20 tokens.
+
+- **`adivinar_personaje`**: 24 tokens.
+
+- **`README`**: 20 tokens.
+
+---
+
+**Estimación temporal inicial según las historias de usuario del panel Kanban: 112 tokens.**
+
 ## **Justificación temporal**
 
 * Durante la primera semana el tiempo que empleamos fue principalmente definir la NOT LIST, las historias de usuario, establecer las características que emplearíamos para cada personaje y la función que nos permitiría asignar un personaje aleatorio al jugador. Además de que creamos la estructura básica de la página con reflex.
