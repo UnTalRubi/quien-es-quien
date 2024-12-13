@@ -28,6 +28,7 @@
 -   [**Conclusiones**](#conclusiones)
     -   [**Posibles mejoras**](#posibles-mejoras)
     -   [**Dificultades**](#dificultades)
+    -   [**Inteligencia Artificial**](#empleo-de-inteligencia-artificial)
 ---
 # **Introducción**
 
@@ -507,3 +508,15 @@ Algunas de las dificultades encontradas al desarrollar el proyecto han sido:
 - La introducción de las ***características*** de los personajes, ya que, no todos los jugadores intoducirían la misma característica con las mismas palabras, lo que nos obligó a ofrecer diferentes soluciones para posibles inputs.
 
 - El framework ***Reflex*** es un castillo de naipes, y cualquiera de sus múltiples dependencias pueden provocar que explote todo. En una ocasíon se generó un error en una dependencia de Next.js que obligó a borrar el proyecto local y volverlo a clonar con git. Lo más gracioso es que dicho error surgió por ajustar el márgen del estilo de un componente mientras estaba compilando en segundo plano.
+
+## **Empleo de Inteligencia Artificial**
+
+No se empleó ninguna IA generativa para el desarrollo de este proyecto. Toda la información necesaria y el estudio requerido para su elaboración partió de las siguientes fuentes (en orden de prioridad):
+
+- [Documentación oficial del framework Reflex.](https://reflex.dev/docs/getting-started/introduction/)
+- [Consultas directas a nuestros compañeros.](https://github.com/UnTalRubi?tab=following)
+- [Apuntes y repositorios del curso.](https://github.com/dfleta?tab=repositories)
+- [Stack Overflow.](https://stackoverflow.com/)
+- [W3Schools.](https://www.w3schools.com/python/)
+- [Geeks for Geeks.](https://www.geeksforgeeks.org/python-programming-language-tutorial/?ref=home-articlecards)
+- [Guru99](https://www.guru99.com/es/python-tutorials.html)
