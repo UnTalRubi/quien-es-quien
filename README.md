@@ -421,7 +421,7 @@ def test_personaje_random(expected):
 
 Según el log de **Wakatime**, el tiempo invertido en este proyecto es:
 
-Rubi
+***Rubi***
 ---
 
 ![tiempo global](/images/wakatime_global.png)
@@ -441,9 +441,12 @@ Rubi
 ![Captura 29 Noviembre](/images/wakatime_11D.png)
 *Captura del 11 de Diciembre.*
 
+**Tiempo en tokens dedicado a cada apartado del proyecto:**
+---
+![Diagrama tiempo](/images/diagrama_tiempo.png)
 ---
 
-Maria
+***Maria***
 ---
 
 Al no tener el wakatime configurado, según los cálculos salen los siguientes tokens:
