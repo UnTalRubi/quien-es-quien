@@ -520,3 +520,5 @@ No se empleó ninguna IA generativa para el desarrollo de este proyecto. Toda la
 - [W3Schools.](https://www.w3schools.com/python/)
 - [Geeks for Geeks.](https://www.geeksforgeeks.org/python-programming-language-tutorial/?ref=home-articlecards)
 - [Guru99](https://www.guru99.com/es/python-tutorials.html)
+
+María: empleé la IA para la explicación de algunos aparatados sobre la utilización de reflex y la ayuda de como hacer el test del personaje random pero que no se llegó a emplear en el proyecto porque descubrió Rubi como hacerlo.
