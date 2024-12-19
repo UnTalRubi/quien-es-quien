@@ -38,6 +38,9 @@ La parte fundamental de trabajo es logar que el usuario pueda interactuar con el
 
 El programa consiste en el clásico juego de mesa de **¿Quién es quién?** para un solo jugador, quien tratará de adivinar su personaje introduciendo características que reduzcan la cantidad de personajes en los paneles que se presentan hasta que logre adivinar el suyo. 
 
+
+Puedes probarlo [aquí](https://quien-es-quien-gold-wood.reflex.run/)!
+
 ***Capturas de la aplicación:***
 
 ![inicio_partida](/images/captura1.png)
